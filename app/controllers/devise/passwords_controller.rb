@@ -16,7 +16,14 @@ class Devise::PasswordsController < DeviseController
     if successfully_sent?(resource)
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
-      respond_with(resource)
+      if params[:user][:redirected] == 'aarhus'
+        puts 'AARHUS do nothing FOKRED GEM'
+        puts "resource name is #{resource_name}"
+        #login_path(redirected: 'aarhus', email_sent: 'true')
+        redirect_to (login_path(redirected: 'aarhus', email_sent: 'true'))
+      else
+        respond_with(resource)
+      end
     end
   end
 
@@ -49,7 +56,15 @@ class Devise::PasswordsController < DeviseController
 
     # The path used after sending reset password instructions
     def after_sending_reset_password_instructions_path_for(resource_name)
-      new_session_path(resource_name) if is_navigational_format?
+      puts 'MOH forked gem'
+      puts "#{params[:user]}"
+      if params[:user][:redirected] == 'aarhus'
+        puts 'AARHUS do nothing FORKED GEM'
+        puts "resource name is #{resource_name}"
+        login_path(redirected: 'aarhus', email_sent: 'true')
+      else
+        new_session_path(resource_name) if is_navigational_format?
+      end
     end
 
     # Check if a reset_password_token is provided in the request
