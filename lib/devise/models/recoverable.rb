@@ -115,11 +115,7 @@ module Devise
           recoverable = find_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
 
           recoverable.send_reset_password_instructions if recoverable.persisted?
-
-          #recoverable.handle_non_created_user(recoverable.email) if !recoverable.persisted?
-          recoverable.mohtemptest(recoverable.email) if !recoverable.persisted?
-
-
+          recoverable.handle_non_created_user(recoverable.email) if !recoverable.persisted?
           recoverable
         end
 
