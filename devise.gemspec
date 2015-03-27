@@ -4,7 +4,7 @@ require "devise/version"
 
 Gem::Specification.new do |s|
   s.name        = "devise"
-  s.version     = Devise::VERSION.dup
+  s.version     = '3.4.1'
   s.platform    = Gem::Platform::RUBY
   s.licenses    = ["MIT"]
   s.summary     = "Flexible authentication solution for Rails with Warden"
