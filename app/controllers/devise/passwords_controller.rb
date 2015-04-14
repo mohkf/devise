@@ -16,7 +16,7 @@ class Devise::PasswordsController < DeviseController
     if successfully_sent?(resource)
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
-      if params[:user][:redirected] == 'aarhus'
+      if params[:user][:redirected] == 'aarhus' || request.original_url.include?("localhost")
         redirect_to (login_path(redirected: 'aarhus', email_sent: 'true'))
       else
         respond_with(resource)
