@@ -54,7 +54,7 @@ class Devise::PasswordsController < DeviseController
     # The path used after sending reset password instructions
     def after_sending_reset_password_instructions_path_for(resource_name)
       puts "#{params[:user]}"
-      if params[:user][:redirected] == 'aarhus'
+      if params[:user][:redirected] == 'aarhus' || request.original_url.include?("app.keepfocus")
         login_path(redirected: 'aarhus', email_sent: 'true')
       else
         new_session_path(resource_name) if is_navigational_format?
